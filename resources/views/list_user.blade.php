@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('content')
     <h1>Daftar Pengguna</h1>
@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($user as $user)
+            @foreach ($users as $user)
                 <tr>
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->nama }}</td>
