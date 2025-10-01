@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-Use App\Models\Kelas;
-Use App\Models\UserModel;
+use App\Models\Kelas;
+use App\Models\UserModel;
 
 class UserController extends Controller
 {
-    public $userModel;
-    public $kelasModel;
+    protected $userModel;
+    protected $kelasModel;
 
     public function __construct()
     {
@@ -18,31 +17,42 @@ class UserController extends Controller
         $this->kelasModel = new Kelas();
     }
 
-    public function index(){
+    public function index()
+    {
         $data = [
             'title' => 'List User',
             'users' => $this->userModel->getUser()
-    ];
-    return view('list_user', $data);
-    }
-    public function create(){
-        $kelasModel = new Kelas();
-        $Kelas = $kelasModel->getKelas();
-        $data = [
-            'title' => 'Create User',
-            'kelas' => $Kelas
         ];
 
-        return view('create_user', $data);
+        return view('list_user', $data);
     }
 
-    public function store(Request $request){
+    public function create()
+    {
+        $kelas = $this->kelasModel->getKelas();
+
+        return view('create_user', [
+            'title' => 'Create User',
+            'kelas' => $kelas
+        ]);
+    }
+
+    public function store(Request $request)
+    {
         $this->userModel->create([
-            'nama' => $request->input('nama'),
-            'nim' => $request->input('npm'),
+            'nama'     => $request->input('nama'),
+            'nim'      => $request->input('npm'),
             'kelas_id' => $request->input('kelas_id'),
         ]);
 
-        return redirect()->to('/user');
+        return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan!');
+    }
+
+    public function destroy($id)
+    {
+        $user = UserModel::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('user.index')->with('success', 'User berhasil dihapus!');
     }
 }
