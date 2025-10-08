@@ -2,18 +2,35 @@
 
 @section('content')
 <div class="container">
-    <h1>Buat Mata Kuliah Baru</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-primary text-white text-center rounded-top-4">
+                    <h3 class="mb-0">Buat Mata Kuliah Baru</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form action="{{ route('matakuliah.store') }}" method="POST">
+                        @csrf
 
-    <form action="{{ route('matakuliah.store') }}" method="POST">
-        @csrf
+                        <div class="mb-3">
+                            <label for="nama_mk" class="form-label fw-semibold">Nama Mata Kuliah</label>
+                            <input type="text" id="nama_mk" name="nama_mk" class="form-control" placeholder="Masukkan nama mata kuliah" required>
+                        </div>
 
-        <label for="nama_mk">Nama Mata Kuliah:</label><br>
-        <input type="text" id="nama_mk" name="nama_mk" required><br><br>
+                        <div class="mb-4">
+                            <label for="sks" class="form-label fw-semibold">SKS</label>
+                            <input type="number" id="sks" name="sks" class="form-control" placeholder="Masukkan jumlah SKS" required>
+                        </div>
 
-        <label for="sks">SKS:</label><br>
-        <input type="number" id="sks" name="sks" required><br><br>
-
-        <button type="submit">Submit</button>
-    </form>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success btn-lg rounded-pill">
+                                <i class="bi bi-plus-circle me-1"></i> Simpan
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
