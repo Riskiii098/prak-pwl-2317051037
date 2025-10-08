@@ -8,26 +8,34 @@
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 {{-- Tambah User --}}
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('user/create') ? 'active' : '' }}" href="{{ url('/user/create') }}">
-                        Tambah
+                        Tambah User
                     </a>
                 </li>
 
                 {{-- List User --}}
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('user') ? 'active' : '' }}" href="{{ url('/user') }}">
-                        List
+                        List User
                     </a>
                 </li>
 
-                {{-- Tentang --}}
+                {{-- Tambah MK --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('tentang') ? 'active' : '' }}" href="{{ url('/tentang') }}">
-                        Tentang
+                    <a class="nav-link {{ request()->is('matakuliah/create') ? 'active' : '' }}" href="{{ url('/matakuliah/create') }}">
+                        Tambah MK
+                    </a>
+                </li>
+
+                {{-- List MK --}}
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('matakuliah') ? 'active' : '' }}" href="{{ url('/matakuliah') }}">
+                        List MK
                     </a>
                 </li>
             </ul>
