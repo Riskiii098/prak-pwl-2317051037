@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mata_kuliah', function (Blueprint $table) {
+            // ✅ Gunakan UUID sebagai primary key
             $table->uuid('id')->primary();
             $table->string('nama_mk', 100);
             $table->integer('sks');

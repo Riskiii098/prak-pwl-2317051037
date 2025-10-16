@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kelas', function (Blueprint $table) {
-            $table->id();
+            // ✅ Gunakan UUID supaya cocok dengan foreign key di tabel user
+            $table->uuid('id')->primary();
             $table->string('nama_kelas');
             $table->timestamps();
         });
